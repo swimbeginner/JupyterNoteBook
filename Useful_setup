@@ -29,3 +29,7 @@ plt.ylabel("Prob density distribution")
 plt.show()
 
 ########### numerical data Z-score normalizaiton 
+label_zscore=(house_data.SalePrice-house_data.SalePrice.mean())/house_data.SalePrice.std()
+
+########### numerical data log normalizaiton, has better skew
+label_log=np.log(house_data.SalePrice)
