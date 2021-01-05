@@ -1,0 +1,31 @@
+%%%% correct plot
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+%%%%%%%%%% print table with all columns
+import pandas as pd
+pd.options.display.max_columns = None
+
+%%%%%%%%%%print table with gridlines
+
+%%HTML
+<style type="text/css">
+table.dataframe td, table.dataframe th {
+    border: 1px  black solid !important;
+  color: black !important;
+}
+</style>
+
+####### plot distribution with displot
+import seaborn as sns
+label=house_data.SalePrice
+plt.figure()
+sns.distplot(label)
+plt.title('Distribution of SalePrice')
+plt.xticks([0, 2e5, 4e5,6e5, 8e5])
+plt.xlabel("price")
+plt.ylabel("Prob density distribution")
+plt.show()
+
+########### numerical data Z-score normalizaiton 
