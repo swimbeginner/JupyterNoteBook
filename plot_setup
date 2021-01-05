@@ -1,0 +1,18 @@
+######## import
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+######## distribution
+label=house_data.SalePrice
+plt.figure()
+sns.distplot(label)
+plt.title('Distribution of SalePrice')
+plt.xticks([0, 2e5, 4e5,6e5, 8e5])
+plt.xlabel("price")
+plt.ylabel("Prob density distribution")
+plt.show()
+
+###### pairplot
+sns.pairplot(house_data[['LotArea', 'OverallQual', 'OverallCond', 'SalePrice']], diag_kind='kde')
+
