@@ -16,3 +16,20 @@ plt.show()
 ###### pairplot
 sns.pairplot(house_data[['LotArea', 'OverallQual', 'OverallCond', 'SalePrice']], diag_kind='kde')
 
+#####################################################
+for outlier analysis
+####### variant analysis
+fig = plt.figure(figsize=(12, 18))
+for i in range(len(num_attributes.columns)):
+    fig.add_subplot(9, 4, i+1)
+    sns.boxplot(y=num_attributes.iloc[:,i])
+plt.tight_layout()
+plt.show()
+
+#######bi-variant analysis
+f = plt.figure(figsize=(12,20))
+for i in range(len(num_attributes.columns)):
+    f.add_subplot(9, 4, i+1)
+    sns.scatterplot(num_attributes.iloc[:,i], target)
+plt.tight_layout()
+plt.show()
