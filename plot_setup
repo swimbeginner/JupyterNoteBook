@@ -33,3 +33,11 @@ for i in range(len(num_attributes.columns)):
     sns.scatterplot(num_attributes.iloc[:,i], target)
 plt.tight_layout()
 plt.show()
+
+############# Heat map
+correlation = home_data.corr()
+f, ax = plt.subplots(figsize=(14,12))
+plt.title('Correlation of numerical attributes', size=16)
+sns.heatmap(correlation)
+plt.show()
+correlation['SalePrice'].sort_values(ascending=False).head(15)
