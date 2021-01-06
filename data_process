@@ -1,1 +1,6 @@
-#######How to remove outlier
+#######How to remove outlier index
+home_data_copy = home_data_copy.drop(home_data_copy.GrLivArea
+                                     [(home_data_copy['GrLivArea']>4000) & 
+                                      (target<300000)].index)
+home_data_copy = home_data_copy.drop(home_data_copy.LowQualFinSF
+                                     [home_data_copy['LowQualFinSF']>550].index)
