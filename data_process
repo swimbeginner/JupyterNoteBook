@@ -1,6 +1,70 @@
+source:
+1) google ML crash course
+2) Datacamp cleaning-data-in-python
+3)https://pbpython.com/categorical-encoding.html
+
+###pandas with general information with non-null number
+sales.info()
+
+###########pick categorical dataa
+obj_df = df.select_dtypes(include=['object']).copy()
+
+#check how many nulls
+obj_df[obj_df.isnull().any(axis=1)]
+
+##########string to number in the columns
+sales['revenue']=sales['revenue'].str.strip('$')
+sales['revenue']=sales['revenue'].astype('float32')
+
+
+### change numerical data to categorical data
+df['marriage_status']=df['marriage_status'].astype('category')
+
+
 #######How to remove outlier index
 home_data_copy = home_data_copy.drop(home_data_copy.GrLivArea
                                      [(home_data_copy['GrLivArea']>4000) & 
                                       (target<300000)].index)
 home_data_copy = home_data_copy.drop(home_data_copy.LowQualFinSF
                                      [home_data_copy['LowQualFinSF']>550].index)
+                                     
+######change the outlier number to a maximum value
+X is pandas array
+X.LotArea=(X.LotArea.clip(upper=100000)/X.LotArea.std())
+plt.figure()
+sns.distplot(X.LotArea)
+plt.title('Distribution of LotFrontage')
+plt.show()
+######## use second value as upper
+set_upper=X['1stFlrSF'].nlargest(2).values[1]
+###################################################2nd method just learned
+movies.loc[movies['avg_rating']>5,'avg_rating']=5
+
+#### chekc if numerica column has na or 0
+print(X['LotFrontage'].isna().sum())
+
+### pandas change data type
+df.astype('int32')
+
+#######add one column for indicator 1 for yes, 0 for no
+ind=[1 if i==0 else 0 for i in temp]
+dat=pd.DataFrame({'YearRemodAdd_ind': ind})
+dat.index=np.arange(1,len(dat)+1) #######index start to 1
+X['YearRemodAdd_ind']=dat
+
+
+#####combine two categorical data colume for 
+tempC1=pd.get_dummies(X.Condition1)
+tempC2=pd.get_dummies(X.Condition2)
+tempC2['RRNe']=tempC1['RRNe']     #####there is one category missing in one column, need to solve this automatically
+ConditionTotal=(tempC1 | tempC2)
+ConditionTotal.drop('Norm', axis=1)
+ConditionTotal                     ########later , we can join this dataFrame to others.
+
+
+########## combine one numerical and one categorical
+#X[['MasVnrType', 'MasVnrArea']]
+MasVnrTotal=pd.get_dummies(X.MasVnrType)
+MasVnrTotal=MasVnrTotal.mul(X.MasVnrArea, axis=0)
+
+
