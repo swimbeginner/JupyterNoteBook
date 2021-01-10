@@ -8,6 +8,7 @@ sales.info()
 
 ###########pick categorical dataa
 obj_df = df.select_dtypes(include=['object']).copy()
+num_df = df.select_dtypes(exclude=['object']).copy()
 
 #check how many nulls
 obj_df[obj_df.isnull().any(axis=1)]
